@@ -1,0 +1,28 @@
+class Solution {
+    /**
+     * @param {number[]} nums
+     * @return {number}
+     */
+    longestMonotonicSubarray(nums) {
+        let inc = 1;
+        let dec = 1;
+        let ans = 1;
+
+        for (let i = 0; i < nums.length - 1; i++) {
+            if (nums[i] < nums[i + 1]) {
+                inc++;
+                dec = 1;
+            } else if (nums[i] > nums[i + 1]) {
+                dec++;
+                inc = 1;
+            } else {
+                inc = 1;
+                dec = 1;
+            }
+
+            ans = Math.max(ans, inc, dec);
+        }
+
+        return ans;
+    }
+}
